@@ -1,0 +1,15 @@
+class Solution(object):
+    def peakIndexInMountainArray(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        for i in range(0,len(arr)-1):
+            current_element = arr[i]
+            next_element = arr[i+1]
+            if i == len(arr)-1:
+                return i
+            if current_element < next_element:
+                continue;
+            else:
+                return i 
