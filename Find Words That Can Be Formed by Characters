@@ -1,0 +1,44 @@
+def delete_onetime(chars_update,letter):
+        charslen = len(chars_update)
+        for i in range(0,charslen):
+            if chars_update[i] == letter:
+                if i == 0:
+                  newword = chars_update[1:]
+                  break
+                if (i>0) and (i != charslen-1):
+                  newword = chars_update[:i] + chars_update[i+1:]
+                  break;
+                if i == charslen-1:
+                  newword = chars_update[:-1]
+                  break;
+        return newword
+
+
+
+class Solution(object):
+    
+    def countCharacters(self, words, chars):
+        """
+        :type words: List[str]
+        :type chars: str
+        :rtype: int
+        """
+        True_words =[]
+        
+        for word in words:
+            True_word_flag = True
+            current_word = word
+            chars_update = chars
+            for letter in current_word:
+                if letter not in chars_update:
+                    True_word_flag = False
+                    break;
+                else:
+                    chars_update = delete_onetime(chars_update,letter)
+            if True_word_flag == True:
+                True_words.append(current_word)
+                
+        num_letter_sum = 0     
+        for word in True_words:
+            num_letter_sum = len(word) + num_letter_sum
+        return num_letter_sum
